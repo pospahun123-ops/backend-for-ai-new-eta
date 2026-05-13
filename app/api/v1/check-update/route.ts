@@ -7,7 +7,7 @@ export async function GET() {
       latest_version: "1.0.5", // เลขเวอร์ชันล่าสุด (ต้องตรงกับใน pubspec.yaml ของ Flutter ตัวใหม่)
       download_url: "https://app.wallcraftthailand.com/base.apk", // ลิงก์ที่นายเอาไฟล์ APK ไปวางไว้
       release_date: "2026-05-12",
-      change_log: "เพิ่มระบบตรวจสอบการอัปเดตอัตโนมัติ และปรับปรุงประสิทธิภาพ"
+      change_log: "เพิ่มระบบตรวจสอบการอัปเดตอัตโนมัติ และปรับปรุงประสิทธิภาพปแอปแอปแอ"
     };
 
     return NextResponse.json(updateData);
