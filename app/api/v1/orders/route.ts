@@ -40,16 +40,19 @@ const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
 export async function GET() {
   try {
-    const [customerTypes, productCategories, projects] = await Promise.all([
+    // 🟢 1. เพิ่มการ Query 'project_types' เข้าไปใน Promise.all
+    const [customerTypes, productCategories, projects, projectTypes] = await Promise.all([
       supabase.from('customer_types').select('*').order('created_at'),
       supabase.from('product_categories').select('*').order('created_at'),
       supabase.from('projects').select('*').order('created_at'),
+      supabase.from('project_types').select('*').order('id'), // 👈 เพิ่มบรรทัดนี้
     ]);
 
     return NextResponse.json({
       customer_types: customerTypes.data || [],
       product_categories: productCategories.data || [],
-      projects: projects.data || []
+      projects: projects.data || [],
+      project_types: projectTypes.data || [] // 🟢 2. ส่งแนบกลับไปให้ Flutter ด้วย 👈
     });
   } catch (err: any) {
     return NextResponse.json({ error: err.message }, { status: 500 });
@@ -148,7 +151,10 @@ export async function POST(request: Request) {
           let projectRow: any = {
             order_item_id: savedItem.id,
             project_name: pName,
-            area_sqm: usage.area_sqm ? parseFloat(usage.area_sqm) : 0
+            area_sqm: usage.area_sqm ? parseFloat(usage.area_sqm) : 0,
+            
+            // 🌟 เพิ่มบรรทัดนี้ลงไป เพื่อเอาค่าที่เซลส์เลือกไปเซฟลง DB
+            project_type_id: usage.project_type_id || item.project_type_id || null 
           };
           return injectCompanyNames(projectRow, typeName, companyName);
         });

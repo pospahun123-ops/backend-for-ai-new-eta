@@ -2,12 +2,13 @@ import { NextResponse } from 'next/server';
 
 export async function GET() {
   try {
-    // 🌟 ตรงนี้คือข้อมูลที่นายต้องมาแก้ทุกครั้งที่มี Version ใหม่
     const updateData = {
-      latest_version: "1.0.5", // เลขเวอร์ชันล่าสุด (ต้องตรงกับใน pubspec.yaml ของ Flutter ตัวใหม่)
-      download_url: "https://app.wallcraftthailand.com/base.apk", // ลิงก์ที่นายเอาไฟล์ APK ไปวางไว้
+      latest_version: "1.0.5",
+      // แยก Link ของ Android (APK) และ iOS (TestFlight)
+      download_url_android: "https://app.wallcraftthailand.com/base.apk", 
+      download_url_ios: "https://testflight.apple.com/join/YOUR_TESTFLIGHT_ID", 
       release_date: "2026-05-12",
-      change_log: "เพิ่มระบบตรวจสอบการอัปเดตอัตโนมัติ และปรับปรุงประสิทธิภาพปแอปแอปแอ"
+      change_log: "เพิ่มระบบตรวจสอบการอัปเดตอัตโนมัติ และปรับปรุงประสิทธิภาพแอป"
     };
 
     return NextResponse.json(updateData);
