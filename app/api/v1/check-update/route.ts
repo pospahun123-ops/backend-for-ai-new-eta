@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 export async function GET() {
   try {
     const updateData = {
-      latest_version: "1.0.5",
+      latest_version: "1.0.6",
       // แยก Link ของ Android (APK) และ iOS (TestFlight)
       download_url_android: "https://app.wallcraftthailand.com/base.apk", 
       download_url_ios: "https://testflight.apple.com/join/YOUR_TESTFLIGHT_ID", 
